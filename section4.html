@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>VueJS</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul class="menu">
+      <li v-for="rubrique in menu">
+        <a :href="rubrique + '.html'">{{ rubrique }}</a>
+      </li>
+    </ul>
+
+    <h1>Section 4:  First Course Project - The Monster Slayer</h1>
+
+
+    <script>
+
+        new Vue({
+            el: '#app',
+        data: {
+            menu: [
+            'index',
+            'section3',
+            'section4',
+          ]
+        }
+        });
+    </script>
+</body>
+
+</html>

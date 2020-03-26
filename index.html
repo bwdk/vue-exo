@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>VueJS</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul class="menu">
+      <li v-for="rubrique in menu">
+     <a :href="rubrique + '.html'">{{ rubrique }}</a>
+      </li>
+    </ul>
+    
+    <h1>Section 2: Using VueJS to Interact with the DOM</h1>
+    <h2>v-once</h2>
+    <p>Transformer un attribut html + cibler un élément</p>
+    <h2 v-once>{{title}}</h2>
+    <p>{{ sayHello() }} - <a v-bind:href="link">Google</a></p>
+    <!-- : est un raccourci à v-bind -->
+    <p>{{ sayHello() }} - <a :href="link">Google</a></p>
+
+
+    <hr>
+    <h2>v-html</h2>
+    <p>Transformer des données</p>
+    <p v-html="finishedLink"></p>
+    <hr>
+    <h2>v-on</h2>
+    <p>Ecouter un évenement</p>
+    <!-- @ est un raccourci à v-on -->
+    <button @click="increase(2, $event)">Click Me</button>
+    <button v-on:click="counter--">Click Me</button>
+    <p>{{ counter < 10 ? counter + ' ' + 'Smaller than 10' : counter + ' '  + 'Greater/Equal than ten' }}</p>
+    <p @mousemove="updateCoordinates">
+      Coordinates: {{ x }} / {{ y }}
+      - <span v-on:mousemove.stop="">DEAD SPOT</span>
+    </p>
+    <input type="text" v-on:keyup.enter.space="alertMe">
+
+    <hr>
+    <h2>v-model</h2>
+    <p>Transformer une saisie</p>
+    <input type="text" v-model="name">
+    <p>{{ name }}</p>
+
+    <hr>
+    <h2>computed properties + watch</h2>
+    <p>Recalculer dynamiquement une propriétée</p>
+    <button v-on:click="counter++">Increase</button>
+
+    <button v-on:click="secondCounter++">second Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <p>Counter: {{ counter }} | {{ secondCounter }}</p>
+    <p>Result: {{ result() }} | {{ output }} </p>
+
+    <hr>
+    <h2>Ajout de CSS (avec classes CSS)</h2>
+
+    <div class="demo" @click="attachRed = !attachRed" :class="divClasses"></div>
+    <div class="demo" :class="{red: attachRed}"></div>
+    <div class="demo" :class="[color, {red: attachRed}]"></div>
+
+    <hr>
+
+    <input type="text" v-model="color">
+
+    <hr>
+    <h2>Ajout de styles (sans classe CSS)</h2>
+
+    <div class="demo" :style="{backgroundColor: color}"></div>
+    <div class="demo" :style="myStyle"></div>
+    <div class="demo" :style="[myStyle, {height: width + 'px'}]"></div>
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        counter: 0,
+        secondCounter: 0,
+        x: 0,
+        y: 0,
+        title: "Hello 1!",
+        link: 'http://google.fr',
+        finishedLink: '<a href="http://google.ca">Google Canada</a>',
+        name: 'Bowdi',
+        attachRed: false,
+        color: 'green',
+        width: 100,
+        menu: [
+          'index',
+          'section3',
+          'section4',
+        ]
+      },
+      methods: {
+        sayHello: function () {
+          this.title = 'Hello 2!';
+        },
+        increase: function (step, event) {
+          this.counter += step;
+        },
+        updateCoordinates: function (evt) {
+          this.x = evt.clientX;
+          this.y = evt.clientY;
+        },
+        alertMe: function () {
+          alert('Alert');
+        },
+        result: function () {
+          console.log('Method');
+          return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+        }
+      },
+      computed: {
+        output: function () {
+          console.log('Computed');
+          return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
+        },
+        divClasses: function () {
+          return {
+            red: this.attachRed,
+            blue: !this.attachRed
+          };
+        },
+        myStyle: function () {
+          return {
+            backgroundColor: this.color,
+            width: this.width + 'px'
+          };
+        }
+      },
+      watch: {
+        counter: function (value) {
+          let vm = this;
+          setTimeout(function () {
+            vm.counter = 0;
+          }, 2000);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

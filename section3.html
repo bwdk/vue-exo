@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>VueJS</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <ul class="menu">
+      <li v-for="rubrique in menu">
+        <a :href="rubrique + '.html'">{{ rubrique }}</a>
+      </li>
+    </ul>
+
+    <h1>Section 3: Using Conditionals and Rendering Lists</h1>
+
+
+    <div id="app">
+      <h2>v-if/v-else/v-show et template</h2>
+      <em>v-if/v-else supprime l'élément du DOM, v-show cache l'élément</em>
+      <br>
+      <button @click="show=!show">Switch</button>
+      <p v-if="show">You can see me!</p>
+      <p v-else>Now u see me!</p>
+      <p v-show="show">Do you also see me?</p>
+
+      <em>Utiliser un template est préférable
+        si on veut attacher ou détacher plusieurs éléments d'un bloc, du DOM</em>
+      <template v-if="show">
+        <h1 v-if>Heading</h1>
+        <p>Inside a template</p>
+      </template>
+
+      <h2>Rendering list w/ v-for</h2>
+
+    
+      <ul>
+        <li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ ingredient }} ({{ i }})</li>
+      </ul>
+      
+      <em>Keeping track of elements wehen using v-for</em>
+      <button @click="ingredients.push('spices')">Add New</button>
+
+      <hr>
+      <em>Loop an array :</em>
+      <ul>
+        <li v-for="person in persons">
+          <div v-for="(value, key, index) in person">{{ key }} : {{ value }} ({{ index }})</spdivan>
+        </li>
+      </ul>
+
+      <hr>
+      <em>Loop throughout list of number :</em>
+        <span v-for="n in 10">{{ n }}</span>
+      <hr>
+
+      <em>Loop Template</em>
+      <template v-for="(ingredient, index) in ingredients">
+        <h1>{{ingredient}}</h1>
+        <p>{{index}}</p>
+      </template>
+
+    </div>
+  
+
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          show: true,
+          ingredients: [
+            'meat',
+            'fruit',
+            'cookies'
+          ],
+          persons: [{
+              name: 'Max',
+              age: 27,
+              color: 'red'
+            },
+            {
+              name: 'Anna',
+              age: 'unknown',
+              color: 'blue'
+            }
+          ],
+          menu: [
+            'index',
+            'section3',
+            'section4',
+          ]
+
+        }
+      });
+    </script>
+</body>
+
+</html>
