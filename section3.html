@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="vue.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>VueJS</title>
 </head>
 
 <body>
 
-  <div id="app">
-    <ul class="menu">
+  <div id="section3" class="page-style">
+    <ul class="menu" id="menu">
       <li v-for="rubrique in menu">
         <a :href="rubrique + '.html'">{{ rubrique }}</a>
       </li>
@@ -21,7 +21,7 @@
     <h1>Section 3: Using Conditionals and Rendering Lists</h1>
 
 
-    <div id="app">
+ 
       <h2>v-if/v-else/v-show et template</h2>
       <em>v-if/v-else supprime l'élément du DOM, v-show cache l'élément</em>
       <br>
@@ -67,38 +67,12 @@
       </template>
 
     </div>
+
+    <script src="vues/menu.js"></script>
+    <script src="vues/section3.js"></script>
   
 
-    <script>
-      new Vue({
-        el: '#app',
-        data: {
-          show: true,
-          ingredients: [
-            'meat',
-            'fruit',
-            'cookies'
-          ],
-          persons: [{
-              name: 'Max',
-              age: 27,
-              color: 'red'
-            },
-            {
-              name: 'Anna',
-              age: 'unknown',
-              color: 'blue'
-            }
-          ],
-          menu: [
-            'index',
-            'section3',
-            'section4',
-          ]
-
-        }
-      });
-    </script>
+ 
 </body>
 
 </html>

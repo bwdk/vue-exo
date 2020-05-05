@@ -5,20 +5,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="vue.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
   <title>VueJS</title>
 </head>
 
 <body>
 
-  <div id="app">
-    <ul class="menu">
+  <div id="section2" class="page-style">
+    <ul class="menu" id="menu">
       <li v-for="rubrique in menu">
      <a :href="rubrique + '.html'">{{ rubrique }}</a>
       </li>
     </ul>
     
-    <h1>Section 2: Using VueJS to Interact with the DOM</h1>
+    <h1>Home: Section 2, Using VueJS to Interact with the DOM</h1>
     <h2>v-once</h2>
     <p>Transformer un attribut html + cibler un élément</p>
     <h2 v-once>{{title}}</h2>
@@ -82,75 +82,9 @@
     <input type="text" v-model="width">
 
   </div>
-
-  <script>
-    new Vue({
-      el: "#app",
-      data: {
-        counter: 0,
-        secondCounter: 0,
-        x: 0,
-        y: 0,
-        title: "Hello 1!",
-        link: 'http://google.fr',
-        finishedLink: '<a href="http://google.ca">Google Canada</a>',
-        name: 'Bowdi',
-        attachRed: false,
-        color: 'green',
-        width: 100,
-        menu: [
-          'index',
-          'section3',
-          'section4',
-        ]
-      },
-      methods: {
-        sayHello: function () {
-          this.title = 'Hello 2!';
-        },
-        increase: function (step, event) {
-          this.counter += step;
-        },
-        updateCoordinates: function (evt) {
-          this.x = evt.clientX;
-          this.y = evt.clientY;
-        },
-        alertMe: function () {
-          alert('Alert');
-        },
-        result: function () {
-          console.log('Method');
-          return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
-        }
-      },
-      computed: {
-        output: function () {
-          console.log('Computed');
-          return this.counter > 5 ? 'Greater 5' : 'Smaller than 5';
-        },
-        divClasses: function () {
-          return {
-            red: this.attachRed,
-            blue: !this.attachRed
-          };
-        },
-        myStyle: function () {
-          return {
-            backgroundColor: this.color,
-            width: this.width + 'px'
-          };
-        }
-      },
-      watch: {
-        counter: function (value) {
-          let vm = this;
-          setTimeout(function () {
-            vm.counter = 0;
-          }, 2000);
-        }
-      }
-    })
-  </script>
+  <script src="vues/menu.js"></script>
+  <script src="vues/section2.js"></script>
+  
 </body>
 
 </html>
